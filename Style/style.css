@@ -1,0 +1,219 @@
+/* =============================================================================
+   FlowGateX Integrated Stylesheet v2.1.0
+   Revised for KEC Digital Hub (Cyan/Lime Identity)
+   ========================================================================== */
+
+/* Ensure theme variables are loaded */
+@import url('./theme.css');
+
+/* =============================================================================
+   0. SMOOTH THEME TRANSITIONS
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth color transitions for theme switching */
+body,
+nav,
+section,
+footer,
+.glass-effect,
+[class*="bg-"],
+[class*="text-"],
+[class*="border-"] {
+    transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+
+/* =============================================================================
+   1. BASE LAYER
+   ========================================================================== */
+body {
+    background-color: var(--bg-base);
+    color: var(--text-body);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    /* Reset default margin */
+}
+
+/* Typography Defaults */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-primary);
+    font-family: var(--font-secondary, var(--font-primary));
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+/* Focus Management (Accessibility) - Uses KEC Blue */
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* =============================================================================
+   2. COMPONENT LAYER
+   ========================================================================== */
+
+/* --- Buttons --- */
+
+/* Base styles shared by buttons */
+.btn-base,
+.btn-primary,
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    position: relative;
+    isolation: isolate;
+    /* Creates stacking context for pseudo-elements */
+    overflow: hidden;
+}
+
+/* Primary Button - Uses KEC Blue-to-Green Gradient */
+.btn-primary {
+    padding: 0.875rem 2rem;
+    background: var(--gradient-button);
+    color: var(--text-inverse);
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), var(--glow-primary);
+}
+
+/* Shine Effect for Primary Button */
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%) skewX(-15deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+.btn-primary:hover::after {
+    transform: translateX(100%) skewX(-15deg);
+}
+
+/* Outline Button - Uses KEC Blue Border */
+.btn-outline {
+    padding: 0.8rem 1.8rem;
+    background: transparent;
+    border: 2px solid var(--border-primary);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-faint);
+}
+
+/* --- Cards --- */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+    will-change: transform;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    /* Hover border highlights with Brand Blue */
+    border-color: var(--border-accent);
+}
+
+/* --- Forms --- */
+.form-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    background: var(--input-bg);
+    color: var(--text-primary);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+    /* Focus ring uses faint Brand Blue */
+    box-shadow: 0 0 0 4px var(--color-primary-faint);
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* --- Utilities --- */
+.text-gradient {
+    /* Uses the Blue-to-Green text gradient */
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    /* Ensure gradient applies correctly */
+}
+
+/* =============================================================================
+   3. LAYOUT & HEADER
+   ========================================================================== */
+
+.header-main {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-primary);
+    padding: 1rem 0;
+    transition: all var(--transition-smooth);
+}
+
+.header-scrolled {
+    padding: 0.75rem 0;
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Accessibility: Reduce motion for users who request it */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
