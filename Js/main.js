@@ -1,137 +1,191 @@
-// --- 1. Smart Theme Engine (IST Auto-Switch + Manual Override) ---
-const themeToggleBtns = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
-const html = document.documentElement;
+document.addEventListener('DOMContentLoaded', () => {
+    // =============================================================================
+    // 1. SMART THEME ENGINE (IST Auto-Switch + Manual Override)
+    // =============================================================================
 
-// Disable transitions during initial theme load to prevent flash
-function disableTransitions() {
-    const style = document.createElement('style');
-    style.id = 'disable-transitions';
-    style.textContent = '* { transition: none !important; }';
-    document.head.appendChild(style);
+    const themeToggleBtns = [
+        document.getElementById('theme-toggle'),
+        document.getElementById('theme-toggle-mobile')
+    ];
+    const html = document.documentElement;
+    const themeKey = 'kec-digital-hub-theme'; // Unique key for local storage
 
-    // Re-enable after a brief moment
-    setTimeout(() => {
-        document.getElementById('disable-transitions')?.remove();
-    }, 50);
-}
+    // Helper: Disable transitions temporarily to prevent "flashing" during theme switch
+    const disableTransitions = () => {
+        const style = document.createElement('style');
+        style.id = 'disable-transitions';
+        style.textContent = '* { transition: none !important; }';
+        document.head.appendChild(style);
+        setTimeout(() => document.getElementById('disable-transitions')?.remove(), 50);
+    };
 
-function getISTHours() {
-    // Get current time in UTC
-    const now = new Date();
-    // IST is UTC + 5:30
-    // Calculate IST time by adding offset (5.5 hours * 60 min * 60 sec * 1000 ms)
-    const istOffset = 5.5 * 60 * 60 * 1000;
-    const istTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + istOffset);
-    return istTime.getHours();
-}
+    // Helper: Get Current Hour in Indian Standard Time (IST)
+    const getISTHours = () => {
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const istOffset = 5.5 * 60 * 60 * 1000; // +5:30
+        return new Date(utc + istOffset).getHours();
+    };
 
-function updateIcons(isDark) {
+    // Helper: Update Button Icons & Aria Labels
+    const updateIcons = (isDark) => {
+        themeToggleBtns.forEach(btn => {
+            if (btn) {
+                const icon = btn.querySelector('.material-icons');
+                if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+                btn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+            }
+        });
+    };
+
+    // Core: Apply Theme
+    const applyTheme = (isDark, enableTransition = true) => {
+        if (!enableTransition) disableTransitions();
+
+        if (isDark) {
+            html.classList.add('dark');
+            html.classList.remove('light');
+        } else {
+            html.classList.add('light');
+            html.classList.remove('dark');
+        }
+        updateIcons(isDark);
+    };
+
+    // Init: Check Storage or Use IST
+    const initTheme = () => {
+        const savedTheme = localStorage.getItem(themeKey);
+
+        if (savedTheme) {
+            applyTheme(savedTheme === 'dark', false);
+        } else {
+            const hour = getISTHours();
+            // Dark mode logic: 7 PM (19) to 6 AM (6)
+            const isNight = hour >= 19 || hour < 6;
+            applyTheme(isNight, false);
+        }
+    };
+
+    // Event Listeners: Toggle Buttons
     themeToggleBtns.forEach(btn => {
         if (btn) {
-            const icon = btn.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-            }
-            btn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+            btn.addEventListener('click', () => {
+                const isDark = !html.classList.contains('dark');
+                applyTheme(isDark, true);
+                localStorage.setItem(themeKey, isDark ? 'dark' : 'light');
+            });
         }
     });
-}
 
-function applyTheme(isDark, enableTransition = true) {
-    if (!enableTransition) {
-        disableTransitions();
+    initTheme();
+
+    // =============================================================================
+    // 2. MOBILE MENU LOGIC
+    // =============================================================================
+
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('.material-icons');
+            if (icon) icon.textContent = isHidden ? 'menu' : 'close';
+
+            // Optional: Close menu when a link is clicked
+            if (!isHidden) {
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        icon.textContent = 'menu';
+                    }, { once: true });
+                });
+            }
+        });
     }
 
-    if (isDark) {
-        html.classList.add('dark');
-        html.classList.remove('light');
-    } else {
-        html.classList.add('light');
-        html.classList.remove('dark');
+    // =============================================================================
+    // 3. NAVBAR SCROLL EFFECT
+    // =============================================================================
+
+    const navbar = document.getElementById('navbar');
+
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md', 'py-2', 'bg-bg-glass');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-2');
+                navbar.classList.add('py-3');
+            }
+        });
     }
 
-    updateIcons(isDark);
-}
+    // =============================================================================
+    // 4. SCROLL ANIMATIONS (Intersection Observer)
+    // =============================================================================
 
-function initTheme() {
-    // 1. Check if user has manually set a preference
-    const savedTheme = localStorage.getItem('theme');
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-    if (savedTheme) {
-        const isDark = savedTheme === 'dark';
-        applyTheme(isDark, false); // No transition on initial load
-        console.log(`Theme: Applied saved preference (${savedTheme})`);
-    } else {
-        // 2. If no manual preference, use IST Auto-Timer
-        const currentHour = getISTHours();
-        // Dark mode between 7 PM (19:00) and 6 AM (06:00)
-        const isNightTime = currentHour >= 19 || currentHour < 6;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('opacity-0', 'translate-y-8'); // Remove initial states
+                entry.target.classList.add('animate-fade-in-up');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
 
-        applyTheme(isNightTime, false); // No transition on initial load
-        console.log(`Auto-Theme: ${isNightTime ? 'Dark' : 'Light'} Mode (IST Hour: ${currentHour})`);
+    // Target elements with specific class or just reuse existing classes
+    document.querySelectorAll('.animate-fade-in-up').forEach((el) => {
+        // Ensure they start hidden if not already managed by CSS
+        if (!el.classList.contains('opacity-0')) {
+            el.classList.add('opacity-0');
+        }
+        observer.observe(el);
+    });
+
+    // =============================================================================
+    // 5. LANDING MODAL LOGIC
+    // =============================================================================
+
+    const modal = document.getElementById("landingModal");
+    const openBtn = document.getElementById("openDetailsBtn");
+
+    // Initialize modal animation state
+    if (modal) {
+        // Force opacity 1 after a slight delay for the entrance animation to resolve
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modal.classList.add('opacity-100');
+        }, 100);
     }
-}
 
-// Initialize on load
-initTheme();
+    if (modal && openBtn) {
+        openBtn.addEventListener("click", () => {
+            // 1. Start fade out animation
+            modal.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
 
-// Event Listener for Manual Toggle
-themeToggleBtns.forEach(btn => {
-    if (btn) {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
+            // Scale down inner card
+            const modalInner = modal.querySelector('div');
+            if (modalInner) modalInner.classList.add('scale-95');
 
-            const isDark = !html.classList.contains('dark');
-            applyTheme(isDark, true); // Enable smooth transition
-
-            // Save manual preference
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
-            console.log(`Theme: Manually switched to ${isDark ? 'dark' : 'light'} mode`);
-            console.log(`HTML classes: ${html.className}`);
-            console.log(`Background color: ${getComputedStyle(document.body).backgroundColor}`);
+            // 2. Remove from DOM layout after animation
+            setTimeout(() => {
+                modal.classList.add("hidden");
+                // Smooth scroll to the main content (Quick Links)
+                const targetSection = document.getElementById('links');
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 500);
         });
     }
 });
-
-// Debug: Log current theme on page load
-console.log(`Initial theme: ${html.classList.contains('dark') ? 'dark' : 'light'}`);
-console.log(`HTML classes: ${html.className}`);
-console.log(`LocalStorage theme: ${localStorage.getItem('theme')}`);
-
-// --- 2. Mobile Menu Logic ---
-const menuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-
-menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    const icon = menuBtn.querySelector('.material-icons');
-    icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
-});
-
-// --- 3. Scroll Navbar Effect ---
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-        navbar.classList.add('shadow-md');
-        navbar.classList.add('py-2');
-        navbar.classList.remove('py-3');
-    } else {
-        navbar.classList.remove('shadow-md');
-        navbar.classList.add('py-3');
-        navbar.classList.remove('py-2');
-    }
-});
-
-// --- 4. Intersection Observer for Scroll Animations ---
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-            entry.target.classList.remove('opacity-0');
-            observer.unobserve(entry.target); // Only animate once
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.animate-fade-in-up').forEach((el) => observer.observe(el));

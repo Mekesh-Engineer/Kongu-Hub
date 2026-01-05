@@ -4,21 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kongu Engineering College Digital Hub - Access student portals, results, and academic resources.">
     <title>Kongu Engineering College - Digital Hub</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <link href="Style/theme.css" rel="stylesheet">
-
 
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
         tailwind.config = {
-            darkMode: 'class', // Enables manual toggling via 'dark' class
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -58,18 +61,18 @@
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse-slow': 'pulseSlow 2s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulseSlow 4s ease-in-out infinite',
                         'spin-slow': 'spin 3s linear infinite',
                     },
                     keyframes: {
                         fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                            '50%': { transform: 'translateY(-15px)' },
                         },
                         pulseSlow: {
                             '0%, 100%': { opacity: '1' },
@@ -97,10 +100,12 @@
                     <div>
                         <h1
                             class="text-xl md:text-2xl font-bold font-display text-text-primary tracking-tight leading-none">
-                            KEC <span class="text-primary">Hub</span></h1>
+                            KEC <span class="text-primary">Hub</span>
+                        </h1>
                         <p
                             class="text-[10px] uppercase tracking-widest text-text-muted font-semibold mt-0.5 hidden sm:block">
-                            Transform Yourself</p>
+                            Transform Yourself
+                        </p>
                     </div>
                 </a>
 
@@ -133,11 +138,13 @@
                 </div>
 
                 <div class="flex items-center gap-4 md:hidden">
-                    <button id="theme-toggle-mobile" class="p-2 text-text-primary hover:text-primary transition-colors">
+                    <button id="theme-toggle-mobile" class="p-2 text-text-primary hover:text-primary transition-colors"
+                        aria-label="Toggle Theme Mobile">
                         <span class="material-icons text-xl" id="theme-icon-mobile">dark_mode</span>
                     </button>
                     <button id="mobile-menu-btn"
-                        class="p-2 text-text-primary hover:bg-bg-surface rounded-lg transition-colors">
+                        class="p-2 text-text-primary hover:bg-bg-surface rounded-lg transition-colors"
+                        aria-label="Open Menu">
                         <span class="material-icons text-2xl">menu</span>
                     </button>
                 </div>
@@ -190,7 +197,7 @@
 
             <div
                 class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up [animation-delay:300ms] opacity-0">
-                <a href="https://www.kongu.ac.in" target="_blank"
+                <a href="https://www.kongu.ac.in" target="_blank" rel="noopener noreferrer"
                     class="w-full sm:w-auto px-8 py-4 rounded-xl bg-bg-surface border border-border-primary text-text-primary font-semibold shadow-card hover:border-primary hover:text-primary transition-all duration-300 flex items-center justify-center gap-2 group">
                     <span class="material-icons group-hover:scale-110 transition-transform text-primary">language</span>
                     <span>Official Website</span>
@@ -204,7 +211,8 @@
         </div>
 
         <a href="#about"
-            class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted hover:text-primary transition-colors animate-bounce cursor-pointer opacity-70 hover:opacity-100">
+            class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted hover:text-primary transition-colors animate-bounce cursor-pointer opacity-70 hover:opacity-100"
+            aria-label="Scroll Down">
             <span class="text-xs uppercase tracking-widest">Scroll</span>
             <span class="material-icons text-2xl">keyboard_arrow_down</span>
         </a>
@@ -213,6 +221,7 @@
     <section id="about" class="py-24 bg-bg-surface relative border-y border-border-primary">
         <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
+
                 <div class="space-y-8">
                     <h2 class="text-3xl md:text-5xl font-bold font-display text-text-primary">Why Choose KEC?</h2>
                     <div class="h-1.5 w-20 bg-gradient-brand rounded-full"></div>
@@ -289,7 +298,6 @@
     </section>
 
     <section id="links" class="py-24 bg-bg-base relative overflow-hidden">
-
         <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-10"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-green-500/5 rounded-full blur-[100px] -z-10"></div>
 
@@ -298,13 +306,13 @@
                 <span class="text-primary font-bold tracking-widest uppercase text-xs">Digital Hub</span>
                 <h2 class="text-3xl md:text-5xl font-bold font-display text-text-primary mt-3 mb-4">Explore KEC</h2>
                 <div class="w-24 h-1.5 bg-gradient-brand mx-auto rounded-full"></div>
-                <p class="text-text-muted mt-4 max-w-xl mx-auto">Access all essential portals, academic resources, and
-                    social channels in one place.</p>
+                <p class="text-text-muted mt-4 max-w-xl mx-auto">
+                    Access all essential portals, academic resources, and social channels in one place.
+                </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-
-                <a href="https://www.kongu.ac.in" target="_blank"
+                <a href="https://www.kongu.ac.in" target="_blank" rel="noopener noreferrer"
                     class="group relative p-6 bg-bg-card rounded-2xl border border-border-primary hover:border-primary shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="flex items-center gap-4">
                         <div
@@ -321,7 +329,7 @@
                     </div>
                 </a>
 
-                <a href="https://portal.kongu.ac.in" target="_blank"
+                <a href="https://portal.kongu.ac.in" target="_blank" rel="noopener noreferrer"
                     class="group relative p-6 bg-bg-card rounded-2xl border border-border-primary hover:border-teal-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="flex items-center gap-4">
                         <div
@@ -336,7 +344,7 @@
                     </div>
                 </a>
 
-                <a href="https://www.kongu.ac.in/results" target="_blank"
+                <a href="https://www.kongu.ac.in/results" target="_blank" rel="noopener noreferrer"
                     class="group relative p-6 bg-bg-card rounded-2xl border border-border-primary hover:border-indigo-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="flex items-center gap-4">
                         <div
@@ -352,7 +360,7 @@
                     </div>
                 </a>
 
-                <a href="https://www.kongu.ac.in/academics" target="_blank"
+                <a href="https://www.kongu.ac.in/academics" target="_blank" rel="noopener noreferrer"
                     class="group relative p-6 bg-bg-card rounded-2xl border border-border-primary hover:border-red-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="flex items-center gap-4">
                         <div
@@ -367,7 +375,7 @@
                     </div>
                 </a>
 
-                <a href="https://www.kongu.ac.in/departments/eee" target="_blank"
+                <a href="https://www.kongu.ac.in/departments/eee" target="_blank" rel="noopener noreferrer"
                     class="group relative p-6 bg-bg-card rounded-2xl border border-border-primary hover:border-yellow-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="flex items-center gap-4">
                         <div
@@ -383,7 +391,7 @@
                     </div>
                 </a>
 
-                <a href="https://www.kongu.ac.in/placements" target="_blank"
+                <a href="https://www.kongu.ac.in/placements" target="_blank" rel="noopener noreferrer"
                     class="group relative p-6 bg-bg-card rounded-2xl border border-border-primary hover:border-green-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="flex items-center gap-4">
                         <div
@@ -399,7 +407,7 @@
                     </div>
                 </a>
 
-                <a href="https://www.kongu.ac.in/admissions" target="_blank"
+                <a href="https://www.kongu.ac.in/admissions" target="_blank" rel="noopener noreferrer"
                     class="group relative p-6 bg-bg-card rounded-2xl border border-border-primary hover:border-pink-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="flex items-center gap-4">
                         <div
@@ -414,7 +422,7 @@
                     </div>
                 </a>
 
-                <a href="https://alumni.kongu.ac.in/" target="_blank"
+                <a href="https://alumni.kongu.ac.in/" target="_blank" rel="noopener noreferrer"
                     class="group relative p-6 bg-bg-card rounded-2xl border border-border-primary hover:border-purple-500 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="flex items-center gap-4">
                         <div
@@ -451,7 +459,7 @@
                 <p class="text-center text-sm font-semibold text-text-muted uppercase tracking-wider mb-6">Connect with
                     us on Social Media</p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://www.youtube.com/@KonguEngineeringCollege" target="_blank"
+                    <a href="https://www.youtube.com/@KonguEngineeringCollege" target="_blank" rel="noopener noreferrer"
                         class="flex items-center gap-3 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-border-primary hover:border-red-600 hover:text-red-600 hover:shadow-md transition-all group">
                         <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"
                             class="w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
@@ -459,6 +467,7 @@
                     </a>
 
                     <a href="https://in.linkedin.com/school/kongu-engineering-college/" target="_blank"
+                        rel="noopener noreferrer"
                         class="flex items-center gap-3 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-border-primary hover:border-blue-700 hover:text-blue-700 hover:shadow-md transition-all group">
                         <img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="LinkedIn"
                             class="w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
@@ -466,13 +475,14 @@
                     </a>
 
                     <a href="https://www.instagram.com/konguengineeringcollege/" target="_blank"
+                        rel="noopener noreferrer"
                         class="flex items-center gap-3 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-border-primary hover:border-pink-600 hover:text-pink-600 hover:shadow-md transition-all group">
                         <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"
                             class="w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
                         <span class="font-medium">Instagram</span>
                     </a>
 
-                    <a href="https://www.facebook.com/konguengineeringcollege" target="_blank"
+                    <a href="https://www.facebook.com/konguengineeringcollege" target="_blank" rel="noopener noreferrer"
                         class="flex items-center gap-3 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-border-primary hover:border-blue-600 hover:text-blue-600 hover:shadow-md transition-all group">
                         <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook"
                             class="w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
@@ -483,9 +493,7 @@
         </div>
     </section>
 
-
     <section id="testimonials" class="py-24 bg-bg-surface relative overflow-hidden">
-
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             <div
                 class="absolute top-10 left-10 text-[20rem] text-primary/5 font-serif leading-none opacity-50 select-none">
@@ -505,20 +513,16 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
                 <div
                     class="flex flex-col h-full p-8 bg-bg-card rounded-2xl border border-border-primary shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative group">
                     <div
                         class="absolute top-0 left-0 w-full h-1 bg-gradient-brand rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity">
                     </div>
-                    <div class="mb-6">
-                        <span class="material-icons text-4xl text-primary/20">format_quote</span>
-                    </div>
+                    <div class="mb-6"><span class="material-icons text-4xl text-primary/20">format_quote</span></div>
                     <p class="text-text-body text-sm leading-relaxed flex-grow italic">
                         "Life is about reliving cherished memories, and my life at Kongu Engineering College was exactly
                         that. From labs to cricket fields, from the incubator to project incentives, and the divine
-                        library where I found the wisdom for public service—every moment shaped me. Both academic and
-                        hostel life remain blissful days I feel in the bottom of my heart."
+                        library where I found the wisdom for public service—every moment shaped me."
                     </p>
                     <div class="mt-8 flex items-center gap-4 pt-6 border-t border-border-primary">
                         <div
@@ -538,14 +542,11 @@
                     <div
                         class="absolute top-0 left-0 w-full h-1 bg-gradient-brand rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity">
                     </div>
-                    <div class="mb-6">
-                        <span class="material-icons text-4xl text-primary/20">format_quote</span>
-                    </div>
+                    <div class="mb-6"><span class="material-icons text-4xl text-primary/20">format_quote</span></div>
                     <p class="text-text-body text-sm leading-relaxed flex-grow italic">
                         "The EEE program offered much more than a technical understanding; it cultivated a mindset
                         capable of deconstructing complex global challenges. The analytical rigor I forged in the labs
-                        at Kongu is the very trait I rely on today to navigate high-stakes engineering problems in the
-                        financial world."
+                        at Kongu is the very trait I rely on today."
                     </p>
                     <div class="mt-8 flex items-center gap-4 pt-6 border-t border-border-primary">
                         <div
@@ -560,85 +561,6 @@
                 </div>
 
                 <div
-                    class="flex flex-col h-full p-8 bg-bg-card rounded-2xl border border-border-primary shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-1 bg-gradient-brand rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="mb-6">
-                        <span class="material-icons text-4xl text-primary/20">format_quote</span>
-                    </div>
-                    <p class="text-text-body text-sm leading-relaxed flex-grow italic">
-                        "The infrastructure and facilities provided by the college played a major role in molding us to
-                        be future-ready. The interview arranged at KEC for the University Entry Scheme gave me my first
-                        exposure to the Armed Forces. The knowledge obtained enabled me to join the Indian Navy as a
-                        Commissioned Officer."
-                    </p>
-                    <div class="mt-8 flex items-center gap-4 pt-6 border-t border-border-primary">
-                        <div
-                            class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-lg">
-                            R</div>
-                        <div>
-                            <h4 class="font-bold text-text-primary">Ex Lt Cdr Rajasekaran M</h4>
-                            <p class="text-xs text-primary font-semibold uppercase tracking-wide">Director</p>
-                            <p class="text-xs text-text-muted">NTRO (PMO), Bengaluru</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="flex flex-col h-full p-8 bg-bg-card rounded-2xl border border-border-primary shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-1 bg-gradient-brand rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="mb-6">
-                        <span class="material-icons text-4xl text-primary/20">format_quote</span>
-                    </div>
-                    <p class="text-text-body text-sm leading-relaxed flex-grow italic">
-                        "I continue to value the early learning and support I received during my college days. The
-                        confidence and problem-solving mindset I developed there have helped me navigate challenges and
-                        build teams globally. I will always be grateful to my first college for laying a strong and
-                        lasting foundation."
-                    </p>
-                    <div class="mt-8 flex items-center gap-4 pt-6 border-t border-border-primary">
-                        <div
-                            class="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-lg">
-                            R</div>
-                        <div>
-                            <h4 class="font-bold text-text-primary">Raju Subramaniam</h4>
-                            <p class="text-xs text-primary font-semibold uppercase tracking-wide">Founder & CTO</p>
-                            <p class="text-xs text-text-muted">The CXO Bench Advisory, New York</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="flex flex-col h-full p-8 bg-bg-card rounded-2xl border border-border-primary shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-1 bg-gradient-brand rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="mb-6">
-                        <span class="material-icons text-4xl text-primary/20">format_quote</span>
-                    </div>
-                    <p class="text-text-body text-sm leading-relaxed flex-grow italic">
-                        "Being part of the first batch, we were fortunate to have excellent staff who were instrumental
-                        in imparting strong foundational knowledge. My education at KEC equipped me with skills, a
-                        positive attitude, and profound knowledge, which have been crucial in my journey to become a
-                        leader in the IT industry."
-                    </p>
-                    <div class="mt-8 flex items-center gap-4 pt-6 border-t border-border-primary">
-                        <div
-                            class="h-12 w-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
-                            K</div>
-                        <div>
-                            <h4 class="font-bold text-text-primary">Krishna V R</h4>
-                            <p class="text-xs text-primary font-semibold uppercase tracking-wide">Senior Vice President
-                            </p>
-                            <p class="text-xs text-text-muted">Citi Bank, Singapore</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div
                     class="flex flex-col h-full p-8 bg-gradient-brand rounded-2xl shadow-lg items-center justify-center text-center text-white relative overflow-hidden group">
                     <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity">
                     </div>
@@ -646,18 +568,16 @@
                     <h3 class="text-2xl font-bold font-display mb-2">Join Our Network</h3>
                     <p class="text-sm text-white/90 mb-6">Become part of a global community of engineers and innovators.
                     </p>
-                    <a href="https://alumni.kongu.ac.in/" target="_blank"
+                    <a href="https://alumni.kongu.ac.in/" target="_blank" rel="noopener noreferrer"
                         class="px-6 py-2 bg-white text-primary font-bold rounded-full hover:bg-gray-100 transition-colors shadow-md">
                         Connect with Alumni
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
 
     <footer class="bg-gray-950 text-white relative overflow-hidden">
-
         <div class="h-1 w-full bg-gradient-to-r from-primary via-blue-500 to-green-500"></div>
 
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -684,21 +604,17 @@
                     </p>
                     <div class="flex gap-4">
                         <a href="#"
-                            class="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all duration-300">
-                            <span class="material-icons text-xl">facebook</span>
-                        </a>
+                            class="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all duration-300"><span
+                                class="material-icons text-xl">facebook</span></a>
                         <a href="#"
-                            class="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition-all duration-300">
-                            <span class="material-icons text-xl">photo_camera</span>
-                        </a>
+                            class="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><span
+                                class="material-icons text-xl">photo_camera</span></a>
                         <a href="#"
-                            class="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300">
-                            <span class="material-icons text-xl">business</span>
-                        </a>
+                            class="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><span
+                                class="material-icons text-xl">business</span></a>
                         <a href="#"
-                            class="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all duration-300">
-                            <span class="material-icons text-xl">play_circle</span>
-                        </a>
+                            class="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all duration-300"><span
+                                class="material-icons text-xl">play_circle</span></a>
                     </div>
                 </div>
 
@@ -717,9 +633,6 @@
                         <li><a href="https://www.kongu.ac.in/admissions"
                                 class="text-gray-400 hover:text-primary transition-colors flex items-center gap-2"><span
                                     class="material-icons text-xs">chevron_right</span>Admissions</a></li>
-                        <li><a href="https://www.kongu.ac.in/placements"
-                                class="text-gray-400 hover:text-primary transition-colors flex items-center gap-2"><span
-                                    class="material-icons text-xs">chevron_right</span>Placements</a></li>
                     </ul>
                 </div>
 
@@ -735,12 +648,6 @@
                         <li><a href="#"
                                 class="text-gray-400 hover:text-green-400 transition-colors flex items-center gap-2"><span
                                     class="material-icons text-xs">menu_book</span>Central Library</a></li>
-                        <li><a href="#"
-                                class="text-gray-400 hover:text-green-400 transition-colors flex items-center gap-2"><span
-                                    class="material-icons text-xs">school</span>Alumni Association</a></li>
-                        <li><a href="#"
-                                class="text-gray-400 hover:text-green-400 transition-colors flex items-center gap-2"><span
-                                    class="material-icons text-xs">event</span>Events Calendar</a></li>
                     </ul>
                 </div>
 
@@ -783,6 +690,90 @@
             </div>
         </div>
     </footer>
+
+    <div id="landingModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md">
+
+        <div
+            class="relative w-full max-w-3xl rounded-3xl glass-effect border border-border-primary shadow-card p-10 text-center transform transition-all duration-500 scale-100">
+            <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-[120px] -z-10"></div>
+
+            <header class="flex justify-center mb-6 animate-fade-in-up">
+                <img src="assets/logo.jpg" alt="Kongu Engineering College Logo"
+                    class="h-24 w-auto object-contain drop-shadow-sm">
+            </header>
+
+            <h2 id="landingModalTitle"
+                class="text-2xl md:text-3xl font-bold font-display text-text-primary tracking-tight mb-3">
+                Department of Electrical &amp; Electronics Engineering
+            </h2>
+
+            <p class="text-text-muted text-sm md:text-base max-w-xl mx-auto mb-6 leading-relaxed">
+                Your centralized <span class="text-primary font-semibold">Quick Access Hub</span> for official
+                platforms, academic resources, and verified social channels of Kongu Engineering College.
+            </p>
+
+            <div class="w-20 h-1 bg-gradient-brand mx-auto rounded-full mb-8"></div>
+
+            <nav class="grid gap-4 md:grid-cols-2 text-left mb-8" aria-label="KEC Quick Access Links">
+                <a href="https://www.instagram.com/kec.eee" target="_blank" rel="noopener noreferrer"
+                    class="group flex items-center gap-4 p-4 rounded-xl bg-bg-card border border-border-primary hover:border-pink-500 hover:shadow-lg transition-all">
+                    <span class="material-icons text-pink-600">photo_camera</span>
+                    <span class="font-semibold text-text-primary">Instagram – KEC EEE</span>
+                </a>
+                <a href="https://kongu.ac.in" target="_blank" rel="noopener noreferrer"
+                    class="group flex items-center gap-4 p-4 rounded-xl bg-bg-card border border-border-primary hover:border-blue-500 hover:shadow-lg transition-all">
+                    <span class="material-icons text-blue-600">language</span>
+                    <span class="font-semibold text-text-primary">KEC Official Website</span>
+                </a>
+                <a href="https://www.youtube.com/@konguengineeringcollege" target="_blank" rel="noopener noreferrer"
+                    class="group flex items-center gap-4 p-4 rounded-xl bg-bg-card border border-border-primary hover:border-red-500 hover:shadow-lg transition-all">
+                    <span class="material-icons text-red-600">play_circle</span>
+                    <span class="font-semibold text-text-primary">YouTube Channel</span>
+                </a>
+                <a href="https://www.linkedin.com/school/kongu-engineering-collegeerode/" target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex items-center gap-4 p-4 rounded-xl bg-bg-card border border-border-primary hover:border-blue-700 hover:shadow-lg transition-all">
+                    <span class="material-icons text-blue-700">business</span>
+                    <span class="font-semibold text-text-primary">LinkedIn – KEC</span>
+                </a>
+            </nav>
+
+            <button id="openDetailsBtn" type="button" aria-label="Enter KonguHub Digital Portal" class="
+    group relative overflow-hidden
+    w-full md:w-auto
+    px-10 py-4
+    rounded-2xl
+    font-display text-base font-semibold tracking-wide
+    text-text-inverse
+    bg-gradient-brand
+    shadow-lg shadow-primary/30
+    transition-all duration-300 ease-out
+    hover:-translate-y-1 hover:shadow-glow
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+    active:scale-95
+  ">
+                <!-- SHIMMER OVERLAY -->
+                <span class="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent
+           group-hover:translate-x-full transition-transform duration-700"></span>
+
+                <!-- CONTENT -->
+                <span class="relative z-10 flex items-center justify-center gap-3">
+                    <span class="material-icons text-lg transition-transform group-hover:scale-110">
+                        rocket_launch
+                    </span>
+                    <span>Enter KonguHub</span>
+                    <span class="material-icons text-sm opacity-70 group-hover:translate-x-1 transition-transform">
+                        arrow_forward
+                    </span>
+                </span>
+            </button>
+
+            <p class="mt-6 text-xs text-text-muted tracking-wide">
+                NAAC A++ Accredited • Autonomous • Affiliated to Anna University
+            </p>
+        </div>
+    </div>
+
     <script src="Js/main.js"></script>
 </body>
 
